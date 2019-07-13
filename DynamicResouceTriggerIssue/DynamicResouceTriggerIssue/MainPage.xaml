@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="DynamicResouceTriggerIssue.MainPage"
+             BackgroundColor="{DynamicResource themeBackgroundColor}">
+
+    <StackLayout Spacing="30" HorizontalOptions="Center" VerticalOptions="Center">
+        <Label Text="Notice that after Triggered, the label theming stops working." TextColor="{DynamicResource themeTextColor}" 
+               LineBreakMode="WordWrap" Margin="10,0" HorizontalTextAlignment="Center">
+            <Label.Triggers>
+                <DataTrigger Binding="{Binding IsTriggered}" Value="true" TargetType="Label">
+                    <Setter Property="TextColor" Value="Red"/>
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
+
+        <Frame BackgroundColor="Transparent" BorderColor="LightGray" HorizontalOptions="Center">
+            <StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Default" TextColor="{DynamicResource themeTextColor}"/>
+                    <Switch IsToggled="{Binding IsDark}"/>
+                    <Label Text="Dark" TextColor="{DynamicResource themeTextColor}"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Normal" TextColor="{DynamicResource themeTextColor}"/>
+                    <Switch IsToggled="{Binding IsTriggered}"/>
+                    <Label Text="Triggered" TextColor="{DynamicResource themeTextColor}"/>
+                </StackLayout>
+
+            </StackLayout>
+        </Frame>
+
+    </StackLayout>
+
+</ContentPage>
